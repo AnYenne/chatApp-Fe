@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import ChatFrame from './components/ChatFrame';
+import ChatFrame from './pages/ChatFrame';
+import Login from './pages/Login';
 
 
 
 function App() {
 
   return (
-    <div
-    style={{width:'100%', minHeight:'800px'}}
-    >
-    <ChatFrame></ChatFrame>
-    </div>
+    // <div
+    // style={{width:'100%', minHeight:'800px'}}
+    // >
+    // <ChatFrame></ChatFrame>
+    // </div>
+
+    <>
+    <Login />
+    </>
   );
 }
 

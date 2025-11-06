@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import { Link } from 'react-router';
 import { Input, Button } from '../components/ui/index';
 
 
+
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setError(null);
-        const emailRegex = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-        if (!email) return setError('Email is required');
-        //sua lai error email a..@gmail.com van valid !!
-        if (!emailRegex.test(email)) return setError('Email is invalid');
+        if (!username) return setError('username is required');
         if (!password) return setError('Password is required');
-        if (password.length < 8) return setError('Password as least 8 character');
-
-        // TODO: replace with API call
-        console.log('login', { email, password });
+        if (password.length < 6) return setError('Password as least 6 character');
+        //TODO: direct user to homepage
+        axios.post('http://localhost:3002/api/auth/login',{
+            username,
+            password,
+        }, { withCredentials: true }
+        )
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => console.log('error', 
+                setError(error.response.data.message )))
+        
     };
     
         
@@ -35,13 +44,13 @@ const Login = () => {
                 <div className='flex flex-col '>
                     <form className='text-xl' onSubmit={handleSubmit}>
                         <Input
-                            label='Email'
-                            id={'email'}
+                            label='username'
+                            id={'username'}
                             variant='outline'
-                            value={email}
-                            type='email'
-                            placeholderValue={'example@email.com'}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={username}
+                            type='text'
+                            placeholderValue={'example'}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
 
                         <Input
@@ -71,7 +80,7 @@ const Login = () => {
                 {/* signup line */}
                 <div className='flex justify-center gap-4'>
                     <p>don't you have an account?</p>
-                    <a className='text-link' href='/'>Sign up</a>
+                    <Link className='text-link' to='/signup'>Sign up</Link>
                 </div>
             </div>
 

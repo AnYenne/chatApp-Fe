@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-primary-text: oklch(0.1905 0.0293 259.82);
+    --color-secondary-text: oklch(0.3514 0.0536 272);
+    --color-link: oklch(0.4979 0.242 265.3);
+    --color-button-800: oklch(0.2846 0.0376 234.98);
+}
+@layer base{
+    :root{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    p, span, h1,h2,h3, div{color: oklch(0.1905 0.0293 259.82) }
+    #root{
+        width: 100vw;
+        height: 100vh;
+        
+    }    
+}
+
+@layer components {
+    .btn {
+    @apply px-4 rounded-md inline-flex items-center justify-center w-full cursor-pointer text-white hover:bg-amber-700 focus:ring-2 focus:ring-blue-400 focus:outline-none;
+    }
+    .btn-primary{ @apply bg-blue-600 text-white hover:bg-blue-700}
+    .btn-outline{ @apply border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white}
+    .btn-ghost{@apply text-blue-600 bg-transparent}
+}

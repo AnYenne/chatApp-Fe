@@ -18,7 +18,7 @@ const Input = ({
     ...props
 }) => {
     const variantMap = {
-        outline: 'border',
+        outline: 'border focus-visible:border-gray-200',
         ghost: 'border-none text-sm'
     };
 
@@ -40,7 +40,7 @@ const Input = ({
                 type={type}
                 value={inputValue}
                 onChange={onChange}
-                className={`w-full md:px-4 md:py-2 px-6 py-4 md:text-sm text-xl rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-text focus:border-transparent transition ${variantClass} ${className}`}
+                className={`w-full md:px-4 md:py-2 px-6 py-4 md:text-sm text-xl rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-text focus:border-transparent transition ${variantClass} ${className} `}
                 {...props}
             />
 

@@ -5,12 +5,12 @@ const Message = () => {
             {/* title name and time */}
             <div className="flex justify-between items-center">
                 <div className="flex justify-start">
-                    <div className="w-14 h-14 rounded-4xl overflow-hidden">
+                    <div className="w-12 h-12 rounded-4xl overflow-hidden">
                         <img className="w-full h-full " src="/image/Login-Art.png" alt="avatar" />
                     </div>
                     <div className="flex flex-col items-start pl-2">
-                        <span>Name</span>
-                        <span>type</span>
+                        <span className="font-semibold">Name</span>
+                        <span className='text-cyan-600'>type</span>
                     </div>
                 </div>
                 <div>1 minute ago</div>

@@ -1,9 +1,9 @@
 
-const Button = ({children, type, variant = 'primary', className ='', ...props}) => {
+const Button = ({children, type, variant = 'primary', className, ...props}) => {
     //prop là những thứ mà thấy cpn này sẽ cần khi tái sử dụng
     //base sẽ là style nền cho cả cpn btn nào cũng có
 
-    const base = 'px-4 rounded-xl inline-flex items-center justify-center w-full cursor-pointer text-white hover:bg-text-700 focus:ring-2 forcus:ring-blue-400 focus:outline-none';
+    const base = 'px-4 rounded-xl inline-flex items-center justify-center w-full cursor-pointer hover:bg-text-700 focus:ring-2 forcus:ring-blue-400 focus:outline-none';
     // base sẽ không cần style trong này nữa sẽ style riêng ở layer của tailwindcss, để conponent này chỉ cần sử dụng prop, event, logic,
     //tạo object để dễ maintain
     const variants = {

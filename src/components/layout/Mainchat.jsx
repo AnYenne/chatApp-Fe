@@ -52,15 +52,12 @@ const Mainchat = () => {
         <>
             <div style={{
                 textAlign:'center', 
-                display:'flex', 
-                flexDirection:'column', 
-                alignItems:'center', 
-                justifyContent:'start',
                 height:'100%',
                 width: '700px',
-                overflow:'hidden',
                 padding: '20px',
-            }}>
+            }}
+            className='md:flex hidden flex-col justify-start items-center overflow-hidden'
+            >
                 {/* title of chat */}
                 <div className='flex justify-between items-center w-full px-4 py-4 bg-amber-100 border-b border-amber-400 rounded-tr-2xl rounded-tl-2xl shadow-2xs'>
                     <div className="flex justify-start">

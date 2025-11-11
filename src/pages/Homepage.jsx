@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 const Homepage = () => {
    
     return(
-        <div className='flex justify-between h-full '>
+        <div className='2xl:p-16 flex justify-between h-full '>
             <Navbar />
             <Chatlist />
             <Mainchat />

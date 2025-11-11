@@ -1,7 +1,10 @@
+import { useAuthStore } from "../../stores/useAuthStore"
 import Logout from "./Logout"
 
 
 const Navbar = () => {
+    
+    const user = useAuthStore((s) => s.user)
 
     const navigations = [{type: 'home', content: '', icon:'PP'},
     {type: 'chat', content: 'content', icon:'PP'},
@@ -21,7 +24,7 @@ const Navbar = () => {
                     src="/image/Login-Art.png" alt="avatar" />
 
                 </div>
-                <div className="capitalize font-bold hidden md:block">Henry jabba</div>
+                <div className="capitalize font-bold hidden md:block">{user.username || 'Henry jabba'}</div>
             </div>
             <div className="flex-1 ">
                 {navigations.map((navi,id) => {

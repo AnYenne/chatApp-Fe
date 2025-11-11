@@ -35,6 +35,7 @@ export const useAuthStore =  create((set, get) => ({
             
             const {accessToken} = await authService.login(username, password);
              set({accessToken})
+             await get().fetchMe()
         } catch (error) {
             console.error(error);
             return error
@@ -45,11 +46,31 @@ export const useAuthStore =  create((set, get) => ({
     },
     logout: async() => {
         try {
+            set({loading: true})
             get().clearState();
             await authService.logout()
         } catch (error) {
             console.error(error)
+            
             return error
+        } finally{
+            set({loading: false})
+
+        }
+    },
+    fetchMe: async () => {
+        try {
+            set({loading: true})
+            const userIf = await authService.fetchMe()
+            set({user: userIf})
+        } catch (error) {
+            console.error(error)
+            set({ accessToken: null,
+                user: null,
+            })
+        }
+        finally{
+            set({loading: false})
         }
     }
 }))

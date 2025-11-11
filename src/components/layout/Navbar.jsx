@@ -1,3 +1,5 @@
+import Logout from "./Logout"
+
 
 const Navbar = () => {
 
@@ -6,8 +8,9 @@ const Navbar = () => {
     {type: 'contact', content: 'content', icon:'PP'},
     {type: 'notification', content: 'content', icon:'PP'},
     {type: 'calendar', content: 'content', icon:'PP'},
-    {type: 'setting', content: 'content', icon:'PP'},
-] 
+    {type: 'setting', content: 'content', icon:'PP'} ]
+   
+
 
     return (
         <div className="flex flex-col justify-start items-start py-4 gap-8 h-full bg-white fixed w-52 ">
@@ -32,9 +35,8 @@ const Navbar = () => {
             })}
             </div>
             
-            <div className="flex gap-2 justify-center items-center px-4">
-                <div>icon</div>
-                <div>log out</div>
+            <div>
+                <Logout />
             </div>
         </div>
     )   

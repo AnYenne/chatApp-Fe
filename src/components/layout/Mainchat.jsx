@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Socket from '../../libs/Socket'
+import socket from '../../libs/Socket'
 import Button from '../ui/Button'
 import Input from '../ui/Input'
 
@@ -12,36 +12,41 @@ const Mainchat = () => {
     
 
     useEffect(() => {
-        Socket.connect()
+        socket.connect()
         
-        Socket.on('connect', () => {
-            console.log('✅ Client đã kết nối, userid là:', Socket.id)
+        socket.on('connect', () => {
+            console.log('✅ Client đã kết nối, userid là:', socket.id)
         })
 
-        Socket.on('disconnect', () => {
+        socket.on('disconnect', () => {
             console.log('❌ Client đã ngắt kết nối')
         })
 
         // Cleanup khi component unmount
         return () => {
-            Socket.off('connect')
-            Socket.off('disconnect')
-            Socket.disconnect()
+            socket.off('connect')
+            socket.off('disconnect')
+            socket.disconnect()
         }
     }, []) 
     
     useEffect(()=>{
-        Socket.on('onchat', data => {
+        socket.on('onchat', data => {
             setMessages( pre => [...pre, data])
             console.log(messages)
         })
              // Cleanup khi component unmount
         return () => {
-            Socket.off('onchat')
-            Socket.disconnect()
+            socket.off('onchat')
+            socket.disconnect()
         }
     },[])
-       
+
+    const send = (e) => {
+        e.preventDefault()
+        const timeline = new Date().toLocaleTimeString()
+        socket.emit('onchat', {message: chat,timeline ,username })
+    }
 
     return(
         <>

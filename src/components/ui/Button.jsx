@@ -1,5 +1,5 @@
 
-const Button = ({children, type, variant = 'primary', className, ...props}) => {
+const Button = ({children, type,onClick, variant = 'primary', className, ...props}) => {
     //prop là những thứ mà thấy cpn này sẽ cần khi tái sử dụng
     //base sẽ là style nền cho cả cpn btn nào cũng có
 
@@ -10,7 +10,7 @@ const Button = ({children, type, variant = 'primary', className, ...props}) => {
         //cần loại nào
         primary: "bg-button-800 w-full text-white hover:bg-blue-700",
         outline: "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
-        ghost: "text-blue-600 bg-transparent"
+        ghost: "bg-transparent"
     };
     const sizes = {
         sm: 'px-3 py-1 text-sm',
@@ -23,7 +23,7 @@ const Button = ({children, type, variant = 'primary', className, ...props}) => {
 
 
     return(
-        <button type={type} className={`${variants[variant]} ${base} ${sizes[sizes]} ${className}`}>
+        <button type={type} onClick={onClick} className={`${variants[variant]} ${base} ${sizes[sizes]} ${className}`}>
         {children} 
         </button>
     )

@@ -5,8 +5,9 @@ import Search from "../ui/Search"
 const Chatlist = () => {
 
     return (
-        <div className="pr-4 py-4 bg-white pl-52 w-3xl overflow-x-hidden">
-            <div className="flex justify-between items-center">
+        <>
+         <div className="pr-4 py-4 bg-white pl-2 w-sm  md:pl-52 sm:w-3xl md:overflow-x-hidden overflow-hidden">
+            <div className="md:flex justify-between items-center min-w-fit hidden">
                 <div>
                     <h1 className="font-bold text-2xl">Chats</h1>
                     <ul>Recent chat</ul>
@@ -17,7 +18,7 @@ const Chatlist = () => {
                     </Button>
                 </div>
             </div>
-            <div>
+            <div className="">
                 <Search />
             </div>
             <div className="gap-4">
@@ -26,6 +27,9 @@ const Chatlist = () => {
                 <Message></Message>
             </div>
         </div>
+        <div className="hidden p-2 ">mở</div>
+        </>
+       
     )
 }
 export default Chatlist

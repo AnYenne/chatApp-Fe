@@ -4,7 +4,7 @@ import Input from "./Input"
 const Search = () => {
 
     return (
-        <div className="flex py-1 px-1 justify-between items-center border border-gray-300 rounded-3xl" >
+        <div className="flex py-1 px-1 justify-between items-center border border-gray-300 rounded-3xl max-w-full" >
             <div>
             <Input className="focus-visible:border-transparent" type="text" placeholderValue='Search' variant="ghost" >
             </Input>

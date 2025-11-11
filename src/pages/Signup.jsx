@@ -1,52 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
 import { Link, useNavigate } from 'react-router';
 import { Input, Button } from '../components/ui/index';
 import { useAuthStore } from '../stores/useAuthStore';
-import {toast} from 'sonner'
-import { authService } from '../api/services/Auth.service'
 
 
-
-const Login = () => {
+const Signup = () => {
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const {login} = useAuthStore();
+    const {signUp} = useAuthStore()
     const navigate = useNavigate()
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
+        if (!email) return setError('Email is required');
         if (!username) return setError('username is required');
         if (!password) return setError('Password is required');
         if (password.length < 6) return setError('Password as least 6 character');
-        //TODO: direct user to 
-        
-        // axios.post('http://localhost:3002/api/auth/login',{
-        //     username,
-        //     password,
-        // }, { withCredentials: true }
-        // )
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => console.log('error', 
-        //         setError(error.response.data.message )))
 
-
-        const res = await login(username, password)
-        if(res?.response){
+        // TODO: replace with API call
+        const res = await signUp(username,password,email);
+        if(res.response){
             return setError(res.response.data.message)
         }
         // if there is no error redirect to homepage
-            navigate('/')
-        
-       
-
-    }
-        
+        if(error === null ) {
+            navigate('/login')
+        }
+    };
     
         
 
@@ -55,22 +38,32 @@ const Login = () => {
             {/* login frame */}
             <div className='w-sm flex flex-col p-4 md:gap-4'>
                 <div className='gap-4'>
-                    <h2 className='font-bold text-4xl md:text-2xl'>Welcome Back</h2>
-                    <span className='text-xl md:text-sm'>Today is a new day. It's your day. You shape it. Sign in to start managing your projects.</span>
+                    <h2 className='font-bold text-4xl md:text-2xl'>Welcome to the chatApp</h2>
+                    <span className='text-xl md:text-sm'>Today is a new day. It's your day. You shape it. Create an account to start managing your projects.</span>
                 </div>
 
                 <div className='flex flex-col '>
                     <form className='text-xl' onSubmit={handleSubmit}>
                         <Input
-                            label='Username'
-                            id={'username'}
+                            label='Email'
+                            id={'email'}
                             variant='outline'
-                            value={username}
-                            type='text'
-                            placeholderValue={'type your username here'}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={email}
+                            type='email'
+                            placeholderValue={'example@email.com'}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
+                        <Input
+                            label='Username'
+                            variant='outline'
+                            value={username}
+                            id={'username'}
+                            placeholderValue={'mustbe unique'}
+                            type='type'
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        
                         <Input
                             label='Password'
                             variant='outline'
@@ -80,25 +73,22 @@ const Login = () => {
                             type='password'
                             onChange={(e) => setPassword(e.target.value)}
                         />
-
                         {error && <p className='text-sm text-red-500 mb-2'>{error}</p>}
-
-                        <a href='/' className='text-link text-sm py-4 pt-2 block text-right '>Forgot Password?</a>
 
                         <Button
                             variant='primary'
                             className='h-[52px] sm:h-11 w-full'
                             type='submit'
                         >
-                            Sign in
+                            Sign up
                         </Button>
                     </form>
                 </div>
 
                 {/* signup line */}
                 <div className='flex justify-center gap-4'>
-                    <p>don't you have an account?</p>
-                    <Link className='text-link' to='/signup'>Sign up</Link>
+                    <p>Already have an account?</p>
+                    <Link className='text-link' to='/login'>Login</Link>
                 </div>
             </div>
 
@@ -109,5 +99,4 @@ const Login = () => {
         </div>
     );
 };
-
-export default Login;
+export default Signup

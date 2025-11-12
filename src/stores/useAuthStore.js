@@ -13,6 +13,11 @@ export const useAuthStore =  create((set, get) => ({
     loading: false})
     },
 
+    setAccessToken : (token) => {
+        set({accessToken: token})
+    },
+
+
     signUp: async (username,password,email) => {
         try {
             set({loading: true})
@@ -32,9 +37,8 @@ export const useAuthStore =  create((set, get) => ({
         try {
             set({loading: true})
             // call Api
-            
             const {accessToken} = await authService.login(username, password);
-             set({accessToken})
+              get().setAccessToken(accessToken)
              await get().fetchMe()
         } catch (error) {
             console.error(error);
@@ -70,6 +74,22 @@ export const useAuthStore =  create((set, get) => ({
             })
         }
         finally{
+            set({loading: false})
+        }
+    },
+    refresh: async () => {
+        try {
+            const {user, fetchMe} = get()
+            set({loading: true })
+            const accessToken =  await authService.refresh()
+            get().setAccessToken(accessToken)
+            if(!user){
+                await fetchMe()
+            }
+        } catch (error) {
+            console.error(error)
+            get().clearState()
+        } finally{
             set({loading: false})
         }
     }

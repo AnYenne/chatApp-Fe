@@ -8,7 +8,7 @@ const api = axios.create({
 
 // gắn accesstoken vào req header
 api.interceptors.request.use((config) => {
-    const {accessToken} = useAuthStore.getState();
+    const {accessToken} = useAuthStore.getState(); // lay accessToken lan 1 duy nhat luc goi linh
     if(accessToken){
         config.headers.Authorization = `Bearer ${accessToken}`
     }

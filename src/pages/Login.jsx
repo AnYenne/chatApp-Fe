@@ -43,8 +43,6 @@ const Login = () => {
         // if there is no error redirect to homepage
             navigate('/')
         
-       
-
     }
         
     
